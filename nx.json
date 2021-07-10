@@ -30,12 +30,6 @@
     ]
   },
   "projects": {
-    "audit": {
-      "tags": []
-    },
-    "bot": {
-      "tags": []
-    },
     "shared": {
       "tags": []
     }
