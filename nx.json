@@ -30,6 +30,9 @@
     ]
   },
   "projects": {
+    "bot": {
+      "tags": []
+    },
     "shared": {
       "tags": []
     }
