@@ -30,6 +30,9 @@
     ]
   },
   "projects": {
+    "audit": {
+      "tags": []
+    },
     "bot": {
       "tags": []
     },

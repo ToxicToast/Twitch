@@ -1,6 +1,64 @@
 {
   "version": 2,
   "projects": {
+    "audit": {
+      "root": "apps/audit",
+      "sourceRoot": "apps/audit/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/audit",
+            "main": "apps/audit/src/main.ts",
+            "tsConfig": "apps/audit/tsconfig.app.json",
+            "assets": [
+              "apps/audit/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/audit/src/environments/environment.ts",
+                  "with": "apps/audit/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "audit:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/audit/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/audit"
+          ],
+          "options": {
+            "jestConfig": "apps/audit/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "bot": {
       "root": "apps/bot",
       "sourceRoot": "apps/bot/src",
