@@ -30,7 +30,22 @@
     ]
   },
   "projects": {
+    "audit": {
+      "tags": []
+    },
+    "bot": {
+      "tags": []
+    },
+    "cronjobs": {
+      "tags": []
+    },
+    "gateway": {
+      "tags": []
+    },
     "shared": {
+      "tags": []
+    },
+    "websockets": {
       "tags": []
     }
   }
