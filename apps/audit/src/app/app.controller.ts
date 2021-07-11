@@ -1,14 +1,22 @@
 import { Controller, Logger } from '@nestjs/common';
-import { Ctx, MessagePattern, Payload, RmqContext } from '@nestjs/microservices';
+import { Ctx, EventPattern, MessagePattern, Payload, RmqContext } from '@nestjs/microservices';
 
 @Controller()
 export class AppController {
-private readonly logger: Logger = new Logger(AppController.name);
+  private readonly logger: Logger = new Logger(AppController.name);
 
-
-  @MessagePattern('twitch-list-audit')
-  async handleList(@Payload() payload: any, @Ctx() context: RmqContext): Promise<void> {
-    Logger.log(payload);
+  @EventPattern('twitch-join-audit')
+  async handleJoin(data: any): Promise<void> {
+    Logger.log(data);
   }
 
+  @EventPattern('twitch-part-audit')
+  async handlePart(data: any): Promise<void> {
+    Logger.log(data);
+  }
+
+  @EventPattern('twitch-message-audit')
+  async handleMessage(data: any): Promise<void> {
+    Logger.log(data);
+  }
 }

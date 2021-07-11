@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { JoinEventHandler, PartEventHandler, MessageEventHandler } from './events/handlers';
 import { WebsocketSagas } from './sagas/websocket.sagas';
+import { AuditSagas } from './sagas/audit.sagas';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { WebsocketSagas } from './sagas/websocket.sagas';
   providers: [
     AppService,
     WebsocketSagas,
+    AuditSagas,
     JoinEventHandler,
     PartEventHandler,
     MessageEventHandler,

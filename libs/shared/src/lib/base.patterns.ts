@@ -1,6 +1,7 @@
 enum BaseTypes {
   EVENT = 'event',
-  SOCKET = 'socket'
+  SOCKET = 'socket',
+  AUDIT = 'audit'
 }
 enum BaseEvents {
   JOIN = 'join',
@@ -11,3 +12,4 @@ enum BaseEvents {
 export type BasePatterns = `twitch-${BaseEvents}-${BaseTypes}`;
 export type EventPatterns = `twitch-${BaseEvents}-event`;
 export type SocketPatterns = `twitch-${BaseEvents}-socket`;
+export type AuditPatterns = `twitch-${BaseEvents}-audit`;
