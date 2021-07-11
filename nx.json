@@ -39,9 +39,6 @@
     "cronjobs": {
       "tags": []
     },
-    "gateway": {
-      "tags": []
-    },
     "shared": {
       "tags": []
     },

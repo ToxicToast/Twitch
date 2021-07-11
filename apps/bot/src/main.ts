@@ -1,31 +1,17 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
+import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
-  const user = process.env.RABBITMQ_USER;
-  const password = process.env.RABBITMQ_PASSWORD;
-  const host = process.env.RABBITMQ_HOST;
-  const queueName = process.env.RABBITMQ_QUEUE_NAME;
+  const app = await NestFactory.create(AppModule);
+  const config = app.get(ConfigService)
+  const port = config.get<number>('APP_PORT', 3333);
   //
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-    transport: Transport.RMQ,
-    options: {
-      urls: [`amqp://${user}:${password}@${host}`],
-      queue: queueName,
-      queueOptions: {
-        durable: false,
-      }
-    }
+  await app.listen(port, () => {
+    Logger.log('Listening at http://localhost:' + port);
   });
-  await app.listen(() => Logger.log('Bot Service is listening'));
 }
 
 bootstrap();
