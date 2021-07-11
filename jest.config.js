@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/apps/audit',
     '<rootDir>/apps/websockets',
     '<rootDir>/apps/cronjobs',
+    '<rootDir>/libs/database',
   ],
 };

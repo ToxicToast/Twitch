@@ -24,6 +24,7 @@ export class CreateHandler implements ICommandHandler<CreateCommand> {
     );
     model.commit();
     await this.repository.save(model);
+    this.logger.log(model.toAnemic());
   }
 
 }

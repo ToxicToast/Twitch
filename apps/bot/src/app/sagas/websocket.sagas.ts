@@ -16,7 +16,7 @@ export class WebsocketSagas {
       map((event) => {
         const { proxy, channel, username } = event;
         const pattern: SocketPatterns = 'twitch-join-socket';
-        proxy.emit(pattern, { channel, username });
+        proxy.send(pattern, { channel, username }).toPromise().catch(error => this.logger.error(error));
         this.logger.log({ pattern, channel, username });
       })
     );
@@ -29,7 +29,7 @@ export class WebsocketSagas {
       map((event) => {
         const { proxy, channel, username } = event;
         const pattern: SocketPatterns = 'twitch-part-socket';
-        proxy.emit(pattern, { channel, username });
+        proxy.send(pattern, { channel, username }).toPromise().catch(error => this.logger.error(error));
         this.logger.log({ pattern, channel, username });
       })
     );
@@ -42,7 +42,7 @@ export class WebsocketSagas {
       map((event) => {
         const { proxy, channel, username, message } = event;
         const pattern: SocketPatterns = 'twitch-message-socket';
-        proxy.emit(pattern, { channel, username, message });
+        proxy.send(pattern, { channel, username, message }).toPromise().catch(error => this.logger.error(error));
         this.logger.log({ pattern, channel, username, message });
       })
     );

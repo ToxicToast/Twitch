@@ -36,6 +36,7 @@ import { AuditSagas } from './sagas/audit.sagas';
           options: {
             urls: [`amqp://${user}:${password}@${host}`],
             queue: queueName,
+            noAck: false,
             queueOptions: {
               durable: false,
             }

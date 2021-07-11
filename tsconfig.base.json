@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@twitch/database": ["libs/database/src/index.ts"],
       "@twitch/shared": ["libs/shared/src/index.ts"]
     }
   },

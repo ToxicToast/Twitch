@@ -21,12 +21,14 @@ export class AppController implements OnApplicationBootstrap, OnApplicationShutd
   async onApplicationBootstrap(): Promise<void> {
     this.logger.debug('Bot is starting...');
     this.service.connect();
+    await this.proxy.connect();
   }
 
   async onApplicationShutdown(signal?: string): Promise<void> {
     this.logger.debug(signal);
     this.logger.debug('Bot is shutting down...');
     this.service.disconnect();
+    await this.proxy.close();
   }
 
   private onBotEvents(): void {

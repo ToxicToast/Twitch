@@ -39,6 +39,9 @@
     "cronjobs": {
       "tags": []
     },
+    "database": {
+      "tags": []
+    },
     "shared": {
       "tags": []
     },

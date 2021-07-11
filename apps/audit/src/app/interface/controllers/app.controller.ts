@@ -13,18 +13,33 @@ export class AppController {
     private readonly commandBus: CommandBus,
   ) {}
 
-  @EventPattern(HandleJoin)
-  async handleJoin(data: HandleJoinDTO): Promise<void> {
-    await this.commandBus.execute(new CreateCommand(data.channel, data.username, 'join', JSON.stringify(data)));
+  @MessagePattern(HandleJoin)
+  async handleJoin(@Payload() payload: HandleJoinDTO, @Ctx() context: RmqContext): Promise<void> {
+    const channel = context.getChannelRef();
+    const originalMsg = context.getMessage();
+    //
+    channel.ack(originalMsg);
+    //
+    return await this.commandBus.execute(new CreateCommand(payload.channel, payload.username, 'join', JSON.stringify(payload)));
   }
 
-  @EventPattern(HandlePart)
-  async handlePart(data: HandlePartDTO): Promise<void> {
-    await this.commandBus.execute(new CreateCommand(data.channel, data.username, 'part', JSON.stringify(data)));
+  @MessagePattern(HandlePart)
+  async handlePart(@Payload() payload: HandlePartDTO, @Ctx() context: RmqContext): Promise<void> {
+    const channel = context.getChannelRef();
+    const originalMsg = context.getMessage();
+    //
+    channel.ack(originalMsg);
+    //
+    return await this.commandBus.execute(new CreateCommand(payload.channel, payload.username, 'part', JSON.stringify(payload)));
   }
 
-  @EventPattern(HandleMessage)
-  async handleMessage(data: HandleMessageDTO): Promise<void> {
-    await this.commandBus.execute(new CreateCommand(data.channel, data.username, 'message', JSON.stringify(data)));
+  @MessagePattern(HandleMessage)
+  async handleMessage(@Payload() payload: HandleMessageDTO, @Ctx() context: RmqContext): Promise<void> {
+    const channel = context.getChannelRef();
+    const originalMsg = context.getMessage();
+    //
+    channel.ack(originalMsg);
+    //
+    return await this.commandBus.execute(new CreateCommand(payload.channel, payload.username, 'message', JSON.stringify(payload)));
   }
 }

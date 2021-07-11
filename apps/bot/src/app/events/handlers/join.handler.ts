@@ -7,10 +7,10 @@ import { EventPatterns } from '@twitch/shared';
 export class JoinEventHandler implements IEventHandler<JoinEvent> {
   private readonly logger: Logger = new Logger(JoinEventHandler.name);
 
-  handle(event: JoinEvent): void {
+  async handle(event: JoinEvent): Promise<void> {
     const { proxy, channel, username } = event;
     const pattern: EventPatterns = 'twitch-join-event';
-    proxy.emit(pattern, { channel, username });
-    this.logger.log({ pattern, channel, username })
+    // await proxy.send(pattern, { channel, username }).toPromise();
+    // this.logger.log({ pattern, channel, username })
   }
 }

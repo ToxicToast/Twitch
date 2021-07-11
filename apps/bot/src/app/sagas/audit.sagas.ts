@@ -16,7 +16,7 @@ export class AuditSagas {
       map((event) => {
         const { proxy, channel, username } = event;
         const pattern: AuditPatterns = 'twitch-join-audit';
-        proxy.emit(pattern, { channel, username });
+        proxy.send(pattern, { channel, username }).toPromise().catch(error => this.logger.error(error));
         this.logger.log({ pattern, channel, username });
       })
     );
@@ -29,7 +29,7 @@ export class AuditSagas {
       map((event) => {
         const { proxy, channel, username } = event;
         const pattern: AuditPatterns = 'twitch-part-audit';
-        proxy.emit(pattern, { channel, username });
+        proxy.send(pattern, { channel, username }).toPromise().catch(error => this.logger.error(error));
         this.logger.log({ pattern, channel, username });
       })
     );
@@ -42,7 +42,7 @@ export class AuditSagas {
       map((event) => {
         const { proxy, channel, username, message } = event;
         const pattern: AuditPatterns = 'twitch-message-audit';
-        proxy.emit(pattern, { channel, username, message });
+        proxy.send(pattern, { channel, username, message }).toPromise().catch(error => this.logger.error(error));
         this.logger.log({ pattern, channel, username, message });
       })
     );

@@ -7,10 +7,10 @@ import { EventPatterns } from '@twitch/shared';
 export class MessageEventHandler implements IEventHandler<MessageEvent> {
   private readonly logger: Logger = new Logger(MessageEventHandler.name);
 
-  handle(event: MessageEvent): void {
+  async handle(event: MessageEvent): Promise<void> {
     const { proxy, channel, username, message } = event;
     const pattern: EventPatterns = 'twitch-message-event';
-    proxy.emit(pattern, { channel, username, message });
-    this.logger.log({ pattern, channel, username, message })
+    // await proxy.send(pattern, { channel, username, message }).toPromise();
+    // this.logger.log({ pattern, channel, username, message })
   }
 }
