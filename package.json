@@ -36,14 +36,17 @@
     "@nestjs/cqrs": "^8.0.0",
     "@nestjs/microservices": "^8.0.1",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/typeorm": "^8.0.1",
     "amqp-connection-manager": "^3.2.2",
     "amqplib": "^0.8.0",
+    "mysql2": "^2.2.5",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.2.0",
     "tslib": "^2.0.0",
     "twitch": "^4.6.0",
     "twitch-auth": "^4.6.0",
-    "twitch-chat-client": "^4.6.0"
+    "twitch-chat-client": "^4.6.0",
+    "typeorm": "^0.2.34"
   },
   "devDependencies": {
     "@nestjs/schematics": "^7.0.0",
