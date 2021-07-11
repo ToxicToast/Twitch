@@ -12,8 +12,6 @@ export class MessageEvent implements IEvent {
     public readonly username: string,
     public readonly message: string,
     public readonly type: 'message',
-  ) {
-    this.logger.debug({ channel, username, message, type });
-  }
+  ) { }
 
 }

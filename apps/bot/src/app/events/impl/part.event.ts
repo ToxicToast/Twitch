@@ -11,8 +11,6 @@ export class PartEvent implements IEvent {
     public readonly channel: string,
     public readonly username: string,
     public readonly type: 'part',
-  ) {
-    this.logger.debug({ channel, username, type });
-  }
+  ) { }
 
 }
