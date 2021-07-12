@@ -8,7 +8,6 @@ export class AppService {
   public clients: any[] = [];
 
   public broadcast(payload: string): void {
-    this.logger.debug(payload);
     this.clients.forEach((client: any) => {
       client.send(payload);
     })
