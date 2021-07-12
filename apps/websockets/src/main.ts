@@ -8,6 +8,7 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { WsAdapter } from '@nestjs/platform-ws';
 
 async function bootstrap() {
   const user = process.env.RABBITMQ_USER;
@@ -26,6 +27,8 @@ async function bootstrap() {
       }
     }
   });
+  app.enableShutdownHooks();
+  app.useWebSocketAdapter(new WsAdapter(app));
   await app.listen(() => Logger.log('Cronjobs Service is listening'));
 }
 
